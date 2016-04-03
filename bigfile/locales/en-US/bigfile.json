@@ -35,7 +35,8 @@
             "createdir": "Create directory if it doesn't exist?",
             "outputas": "Output as",
             "filelabel": "bigfile",
-            "deletelabel": "delete __file__"
+            "deletelabel": "delete __file__",
+            "buffer": "Buffer size (KB)"
         },
         "action": {
             "append": "append to file",

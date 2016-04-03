@@ -124,7 +124,13 @@ module.exports = function(RED) {
         if (this.format) {
             options['encoding'] = this.format;
         }
+
+        var bignode = n.bignode || true;
+        var buffer = n.buffer || 64;
+
         this.on("input",function(msg) {
+
+            // Now filename maybe payload because it's a pain to add a function just to rename payload to filename!
             var filename = node.filename || msg.filename || msg.payload || "";
             if (!node.filename) {
                 node.status({fill:"grey",shape:"dot",text:filename});
@@ -134,67 +140,74 @@ module.exports = function(RED) {
             } else {
                 msg.filename = filename;
 
-                var nb = 0;
-                var size = 0;
+                if (bignode) {
 
-                var outer = new stream.Transform({ objectMode: true });
-                outer._transform = function(data, encoding, done) {
+                    // Big Blue nodes principles !
 
-                    size += data.length;
+                    var nb = 0;
+                    var size = 0;
 
-                    // #3 big node principle: tell me what you are doing, so far
-                    if (++nb % 1 == 0) node.status({fill: "blue", shape: "dot", text: "sending... " + filesize(size) + " so far"});
+                    var outer = new stream.Transform({ objectMode: true });
+                    outer._transform = function(data, encoding, done) {
 
-                    // #1 big node principle: send blocks for big files management
-                    node.send({ payload: data });
+                        size += data.length;
 
-                    done();
-                }
+                        // #3 big node principle: tell me what you are doing, so far
+                        if (++nb % 1 == 0) node.status({fill: "blue", shape: "dot", text: "sending... " + filesize(size) + " so far"});
 
-                var finished = function() {
-                    outer.end();
+                        // #1 big node principle: send blocks for big files management
+                        node.send({ payload: data });
+
+                        done();
+                    }
+
+                    var finished = function() {
+                        outer.end();
+
+                        // #2 big node principle: send controls using msg.control messages
+                        node.send({ control: "end" });
+
+                        // #3 big node principle: tell me when you've done the work
+                        node.status({fill: "green", shape: "dot", text: "done with " + filesize(size) });
+                    }
+
+                    options.bufferSize = buffer * 1024;
+
+                    // Error management using domain
+                    var d = domain.create();
+                    d.on('error', function(err) {
+                        // #3 big node principle: don't be shy, tell me too when something wrong
+                        node.status({fill: "red", shape: "dot", text: err.message });
+                        node.error(err);
+                    });
 
                     // #2 big node principle: send controls using msg.control messages
-                    node.send({ control: "end" });
+                    node.send({ control: "start" });
 
-                    // #3 big node principle: tell me when you've done the work
-                    node.status({fill: "green", shape: "dot", text: "done with " + filesize(size) });
+                    // Go!
+                    d.run(function() {
+                        fs.createReadStream(filename, options)
+                        .pipe(outer)
+                        .on('finish', finished);
+                    });
+
+                } else {
+
+                    // Original work by IBM
+                    fs.readFile(filename,options,function(err,data) {
+                        if (err) {
+                            node.error(err,msg);
+                            msg.error = err;
+                            delete msg.payload;
+                        } else {
+                            msg.payload = data;
+                            delete msg.error;
+                        }
+                        node.send(msg);
+                    });
+
                 }
 
-                options.bufferSize = 1024 * 1024;
-
-                // Error management using domain
-                var d = domain.create();
-                d.on('error', function(err) {
-                    // #3 big node principle: don't be shy, tell me too when something wrong
-                    node.status({fill: "red", shape: "dot", text: err.message });
-                    node.error(err);
-                });
-
-                // #2 big node principle: send controls using msg.control messages
-                node.send({ control: "start" });
-
-                // Go!
-                d.run(function() {
-                    fs.createReadStream(filename, options)
-                    .pipe(outer)
-                    .on('finish', finished);
-                });
-
-
-                /*
-                fs.readFile(filename,options,function(err,data) {
-                    if (err) {
-                        node.error(err,msg);
-                        msg.error = err;
-                        delete msg.payload;
-                    } else {
-                        msg.payload = data;
-                        delete msg.error;
-                    }
-                    node.send(msg);
-                });
-*/
             }
         });
     }
