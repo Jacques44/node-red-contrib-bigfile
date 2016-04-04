@@ -165,7 +165,7 @@ module.exports = function(RED) {
                         outer.end();
 
                         // #2 big node principle: send controls using msg.control messages
-                        node.send({ control: "end" });
+                        node.send({ control: { state: "end" } });
 
                         // #3 big node principle: tell me when you've done the work
                         node.status({fill: "green", shape: "dot", text: "done with " + filesize(size) });
@@ -182,7 +182,7 @@ module.exports = function(RED) {
                     });
 
                     // #2 big node principle: send controls using msg.control messages
-                    node.send({ control: "start" });
+                    node.send({ control: { state: "start" } });
 
                     // Go!
                     d.run(function() {
