@@ -55,27 +55,24 @@ module.exports = function(RED) {
 
           if (!msg.config.filename) throw new Error("No filename given");
 
-          if (config.format == "blocks") {
+          if (config.flow == "blocks") {
 
+            delete msg.config.format;
             return bignode.stream_file_blocks(msg);
           }
 
-          if (config.format == "buffer") {
+          if (config.flow == "buffer") {
 
+            delete msg.config.format;
             return bignode.stream_full_file(msg);
-          }
+          }     
 
-          if (config.format == "string") {
-
-            return bignode.stream_full_file_string(msg);
-          }          
-
-          if (config.format == "lines") {
+          if (config.flow == "lines") {
 
             return bignode.stream_data_lines(msg);
           }
 
-          throw new Error("Format inconnu: " + config.format);
+          throw new Error("Unknown flow format: " + config.flow);
 
         });
     }

@@ -33,7 +33,9 @@
             "action": "Action",
             "addnewline": "Add newline (\\n) to each payload?",
             "createdir": "Create directory if it doesn't exist?",
-            "outputas": "Output as",
+            "encoding": "Read as",
+            "flow": "Output",
+            "format": "Send as",
             "filelabel": "bigfile",
             "deletelabel": "delete __file__",
             "highWaterMark": "Buffer size (KB)",
@@ -48,7 +50,7 @@
             "line_encoding_ucs2": "ucs2 (= uft16le)",
 
 
-            "line_skip_empty": "skip empty lines",
+            "line_keep_empty": "keep empty lines",
             "line_start": "start position",
             "line_end": "end position"
         },
@@ -58,10 +60,10 @@
             "delete": "delete file"
         },
         "output": {
-            "buffer": "as a buffer",
-            "blocks": "as multiple blocks",
-            "lines": "as multiple lines",
-            "string": "as a string"
+            "buffer": "a buffer",
+            "blocks": "multiple blocks",
+            "lines": "multiple lines",
+            "string": "a string"
         },
         "status": {
             "wrotefile": "wrote to file: __file__",

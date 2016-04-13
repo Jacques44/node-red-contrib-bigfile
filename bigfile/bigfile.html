@@ -22,24 +22,7 @@
     </div>
 
     <div class="form-row">
-        <label for="node-input-format"><i class="fa fa-sign-out"></i> <span data-i18n="bigfile.label.outputas"></span></label>
-        <select id="node-input-format">
-            <option value="blocks" data-i18n="bigfile.output.blocks"></option>
-            <option value="lines" data-i18n="bigfile.output.lines"></option>            
-            <option value="buffer" data-i18n="bigfile.output.buffer"></option>
-            <option value="string" data-i18n="bigfile.output.string"></option>
-        </select>
-    </div>
-
-
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="bigfile.label.buffer"></span></label>
-        <input type="text" id="node-input-highWaterMark" data-i18n="[placeholder]bigfile.label.highWaterMark">
-    </div>
-
-    <div class="form-row">
-        <label for="node-input-format"><i class="fa fa-sign-out"></i> <span data-i18n="bigfile.label.line_encoding"></span></label>
+        <label for="node-input-encoding"><i class="fa fa-sign-in"></i> <span data-i18n="bigfile.label.encoding"></span></label>
         <select id="node-input-encoding">
             <option value="utf8" data-i18n="bigfile.label.line_encoding_utf8"></option>
             <option value="ascii" data-i18n="bigfile.label.line_encoding_ascii"></option>            
@@ -49,9 +32,36 @@
             <option value="ucs2" data-i18n="bigfile.label.line_encoding_ucs2"></option>
         </select>
     </div>
+
+    <div class="form-row">
+        <label for="node-input-flow"><i class="fa fa-sign-out"></i> <span data-i18n="bigfile.label.flow"></span></label>
+        <select id="node-input-flow">
+            <option value="blocks" data-i18n="bigfile.output.blocks"></option>
+            <option value="lines" data-i18n="bigfile.output.lines"></option>            
+            <option value="buffer" data-i18n="bigfile.output.buffer"></option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-format"><i class="fa fa-sign-out"></i> <span data-i18n="bigfile.label.format"></span></label>
+        <select id="node-input-format">    
+            <option value="utf8" data-i18n="bigfile.label.line_encoding_utf8"></option>
+            <option value="ascii" data-i18n="bigfile.label.line_encoding_ascii"></option>            
+            <option value="base64" data-i18n="bigfile.label.line_encoding_base64"></option>
+            <option value="binary" data-i18n="bigfile.label.line_encoding_binary"></option>
+            <option value="hex" data-i18n="bigfile.label.line_encoding_hex"></option>
+            <option value="ucs2" data-i18n="bigfile.label.line_encoding_ucs2"></option>
+        </select>
+    </div>    
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="bigfile.label.buffer"></span></label>
+        <input type="text" id="node-input-highWaterMark" data-i18n="[placeholder]bigfile.label.highWaterMark">
+    </div>
+
     <div>
         <label>
-            <input type="checkbox" id="node-input-skipEmptyLines" > Skip empty lines?
+            <input type="checkbox" id="node-input-keepEmptyLines" > Keep empty lines?
         </label>
         <label>
             <input type="text" id="node-input-start" > Start
@@ -83,10 +93,11 @@
         defaults: {
             name: {value:""},
             filename: {value:""},
-            format: {value: "blocks"},
+            flow: {value: "blocks"},
             highWaterMark: { value: 16 },  // blocks
             encoding: { value: "utf8" },    // line-by-line + fs
-            skipEmptyLines: { value: false },   // line-by-line
+            format: { value: "utf8" }, // line-by-line + string
+            keepEmptyLines: { value: false },   // line-by-line
             start: { value: "" },   // line-by-line
             end: { value: "" }  // line-by-line
         },
