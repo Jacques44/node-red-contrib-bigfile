@@ -57,19 +57,7 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="bigfile.label.buffer"></span></label>
         <input type="text" id="node-input-highWaterMark" data-i18n="[placeholder]bigfile.label.highWaterMark">
-    </div>
-
-    <div>
-        <label>
-            <input type="checkbox" id="node-input-keepEmptyLines" > Keep empty lines?
-        </label>
-        <label>
-            <input type="text" id="node-input-start" > Start
-        </label>
-        <label>
-            <input type="text" id="node-input-end" > End
-        </label>                
-    </div>     
+    </div>   
 
      <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
@@ -97,9 +85,7 @@
             highWaterMark: { value: 16 },  // blocks
             encoding: { value: "utf8" },    // line-by-line + fs
             format: { value: "utf8" }, // line-by-line + string
-            keepEmptyLines: { value: false },   // line-by-line
-            start: { value: "" },   // line-by-line
-            end: { value: "" }  // line-by-line
+            keepEmptyLines: { value: false }   // line-by-line
         },
         color:"#cc0044",
         inputs:1,
