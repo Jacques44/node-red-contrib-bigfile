@@ -14,28 +14,28 @@ npm install node-red-contrib-bigfile
 
 ## Principles for Big Nodes
 
-   #1 can handle big data or block mode
+ #1 can handle big data or block mode
 
-   That means, in block mode, not only "one message is a whole file" and able to manage start/end control messages
+ That means, in block mode, not only "one message is a whole file" and able to manage start/end control messages
 
-   #2 send start/end messages as well as statuses
+ #2 send start/end messages as well as statuses
 
-   That means it uses a second output to give control states (start/end/running and error) control messages
- 
-   #3 tell visually what they are doing
+ That means it uses a second output to give control states (start/end/running and error) control messages
 
-   Visual status on the node tells it's ready/running (blue), all is ok and done (green) or in error (red)
+ #3 tell visually what they are doing
+
+ Visual status on the node tells it's ready/running (blue), all is ok and done (green) or in error (red)
 
 ## Usage
 
-  	Big File is an input node for node-red to read big files and send them as blocks, lines or a unique string
+	Big File is an input node for node-red to read big files and send them as blocks, lines or a unique string
 
-  	It has options offered by fs: (https://nodejs.org/api/fs.html#fs_fs_readfile_file_options_callback)
+	It has options offered by fs: (https://nodejs.org/api/fs.html#fs_fs_readfile_file_options_callback)
 
-  	It has two options offered by byline: (https://www.npmjs.com/package/byline)
+	It has two options offered by byline: (https://www.npmjs.com/package/byline)
 
-  	- data format (utf8, latin, hexdec, base64, ucs2 and ascii)
-  	- keep empty lines
+	- data format (utf8, latin, hexdec, base64, ucs2 and ascii)
+	- keep empty lines
 
 ## Dependencies
 
