@@ -3,7 +3,7 @@
 "Big File" contrib for node-red. Original work by IBM doesn't fit my needs. With big files, multiple blocks are sent making parsing inconsistent. I also needed the file reader to use state of the art libraries
 This node is able to manage big files by sending blocks or string  or lines
 
-![alt tag](https://cloud.githubusercontent.com/assets/18165555/14588391/d468af54-04c8-11e6-8e82-59c49a30708f.png)
+![alt tag](https://cloud.githubusercontent.com/assets/18165555/14589405/e3ae04e6-04e1-11e6-8591-5b8039a1e6b0.png))
 
 ![alt tag](https://cloud.githubusercontent.com/assets/18165555/14588392/dad963a6-04c8-11e6-8539-f9b4afc4cc32.png)
 
@@ -32,7 +32,12 @@ npm install node-red-contrib-bigfile
 
 Big File is an input node for node-red to read big files and send them as blocks, lines or a unique string
 
-It has options offered by fs: (https://nodejs.org/api/fs.html#fs_fs_readfile_file_options_callback)
+It has options offered by fs: (https://nodejs.org/api/fs.html#fs_fs_createreadstream_path_options)
+
+- encoding (any of Buffer encoding)
+- start (inclusive, starts at 0)
+- end (inclusive, starts at 0)
+- highWaterMark (buffer size in 1024 bytes, default 64)
 
 It has two options offered by byline: (https://www.npmjs.com/package/byline)
 
