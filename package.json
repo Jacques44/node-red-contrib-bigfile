@@ -1,9 +1,10 @@
 {
   "name": "node-red-contrib-bigfile",
-  "version": "0.0.1",
-  "description": "A Big File I/O",
+  "version": "1.0.0",
+  "description": "A Big File Reader",
   "dependencies": {
-    "filesize": "^3.2.1"
+    "filesize": "^3.2.1",
+    "node-red-biglib": "^1.0.0"
   },
   "keywords": [
     "node-red"
@@ -22,5 +23,5 @@
     "url": "https://github.com/Jacques44/node-red-contrib-bigfile/issues"
   },
   "homepage": "https://github.com/Jacques44/node-red-contrib-bigfile",
-  "_id": "node-red-contrib-bigfile@0.0.1"
+  "_id": "node-red-contrib-bigfile@1.0.0"
 }

@@ -51,23 +51,24 @@ module.exports = function(RED) {
           // if no configuration available from the incoming message, a new one is returned, cloned from default
           msg.config = bignode.new_config(msg.config);  
 
-          msg.config.filename = msg.config.filename || msg.payload || msg.filename;
+          // filename has precedence over payload in order to give compatibility with original core file reader node
+          msg.config.filename = msg.config.filename || msg.filename || msg.payload;
 
           if (!msg.config.filename) throw new Error("No filename given");
 
-          if (config.flow == "blocks") {
+          if (msg.config.flow == "blocks") {
 
             delete msg.config.format;
             return bignode.stream_file_blocks(msg);
           }
 
-          if (config.flow == "buffer") {
+          if (msg.config.flow == "buffer") {
 
             delete msg.config.format;
             return bignode.stream_full_file(msg);
           }     
 
-          if (config.flow == "lines") {
+          if (msg.config.flow == "lines") {
 
             return bignode.stream_data_lines(msg);
           }
