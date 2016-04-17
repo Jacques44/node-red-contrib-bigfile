@@ -3,7 +3,7 @@
 "Big File" contrib for node-red. Original work by IBM doesn't fit my needs. With big files, multiple blocks are sent making parsing inconsistent. I also needed the file reader to use state of the art libraries
 This node is able to manage big files by sending blocks or string  or lines
 
-![alt tag](https://cloud.githubusercontent.com/assets/18165555/14589405/e3ae04e6-04e1-11e6-8591-5b8039a1e6b0.png))
+![alt tag](https://cloud.githubusercontent.com/assets/18165555/14589405/e3ae04e6-04e1-11e6-8591-5b8039a1e6b0.png)
 
 ![alt tag](https://cloud.githubusercontent.com/assets/18165555/14588392/dad963a6-04c8-11e6-8539-f9b4afc4cc32.png)
 
