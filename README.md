@@ -12,6 +12,8 @@ This node is able to manage big files by sending blocks or string  or lines
 ## Installation
 ```bash
 npm install node-red-contrib-bigfile
+cd node-red-contrib-bigfile
+npm install
 ```
 
 ## Principles for Big Nodes
