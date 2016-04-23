@@ -20,6 +20,11 @@
          <label for="node-input-filename"><i class="fa fa-file"></i> <span data-i18n="bigfile.label.filename"></span></label>
          <input type="text" id="node-input-filename" data-i18n="[placeholder]bigfile.label.filename">
     </div>
+  <div class="form-row">
+      <label>&nbsp;</label>
+      <input type="checkbox" id="node-input-nopayload" style="display: inline-block; width: auto; vertical-align: top;">
+      <label for="node-input-nopayload" style="width: 70%;"><span data-i18n="bigline.label.nopayload"></span></label>
+  </div>      
 
     <div class="form-row">
         <label for="node-input-encoding"><i class="fa fa-sign-in"></i> <span data-i18n="bigfile.label.encoding"></span></label>
@@ -81,6 +86,7 @@
         defaults: {
             name: {value:""},
             filename: {value:""},
+            nopayload: {value: false},
             flow: {value: "blocks"},
             highWaterMark: { value: 16 },  // blocks
             encoding: { value: "utf8" },    // line-by-line + fs

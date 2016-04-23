@@ -41,7 +41,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
 
         // new instance of biglib for this configuration
-        var bignode = new biglib({ config: config, node: this, status: 'filesize' });
+        var bignode = new biglib({ config: config, node: this, status: 'filesize', generator: 'filename' });
 
         // biglib changes the configuration to add some properties
         config = bignode.config();
@@ -51,8 +51,8 @@ module.exports = function(RED) {
           // if no configuration available from the incoming message, a new one is returned, cloned from default
           msg.config = bignode.new_config(msg.config);  
 
-          // filename has precedence over payload in order to give compatibility with original core file reader node
-          msg.config.filename = msg.config.filename || msg.filename || msg.payload;
+          if (!config.nopayload) msg.filename = msg.filename || msg.payload;
+          bignode.set_generator_property(msg);
 
           if (!msg.config.filename) throw new Error("No filename given");
 
