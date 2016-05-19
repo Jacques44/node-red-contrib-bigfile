@@ -78,5 +78,5 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("bigfile reader",BigFileInNode);
+    RED.nodes.registerType("bigfile",BigFileInNode);
 }
