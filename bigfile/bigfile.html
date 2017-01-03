@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 
-<script type="text/x-red" data-template-name="bigfile">
+<script type="text/x-red" data-template-name="bigfile reader">
 
     <div class="form-row">
          <label for="node-input-filename"><i class="fa fa-file"></i> <span data-i18n="bigfile.label.filename"></span></label>
@@ -73,7 +73,7 @@
 
 </script>
 
-<script type="text/x-red" data-help-name="bigfile">
+<script type="text/x-red" data-help-name="bigfile reader">
     <p>Reads the specified file and sends the content as <code>msg.payload</code>,
     and the filename as <code>msg.filename</code>.</p>
     <p>The filename can be configured in the node. If left blank it should be
@@ -83,7 +83,7 @@
 
 <script type="text/javascript">
 
-    RED.nodes.registerType('bigfile',{
+    RED.nodes.registerType('bigfile reader',{
         category: 'storage-input',
         defaults: {
             name: {value:""},
